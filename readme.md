@@ -1,23 +1,23 @@
-# Install
-
+# Database Setup
 ```
-yarn && yarn --prefix client
-```
-# Development
-
-```
-yarn dev
-```
-# Heroku
-install heroku cli
-```
-heroku login
-heroku create
-git push heroku master
+Install MongoDB Server & Connect
 ```
 
-Goto you heroku dashboard and Edit **config Vars**
+# Node.js(Server) Installation 
 
-Add your remote mongo **MONGODB_URI** to **config Vars**
+```
+# Go to the root folder and run
+npm install
 
-or goto addons and search mongodb
+# Start Server
+node server.js
+```
+# React.js(Client) Installation 
+
+```
+# Go to the client folder and run
+npm install
+
+# Start Webpakcer Dev Server
+npm start
+```
