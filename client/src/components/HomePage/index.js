@@ -58,8 +58,6 @@ const HomePage = () => {
     [modalShow],
     [selectedItem]
   );
-
-  /* Refactoring */
   function addOrderItem(e) {
     e.preventDefault();
     const data = new FormData(e.target);
