@@ -50,7 +50,7 @@ const OrderList = () => {
   ];
   return (
     <div className="container">
-      <BootstrapTable keyField="key" data={order} columns={columns} />
+      <BootstrapTable keyField="_id" data={order} columns={columns} />
     </div>
   );
 };
