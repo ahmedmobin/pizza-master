@@ -34,7 +34,7 @@ const OrderList = () => {
       abortController.abort();
       source.cancel();
     };
-  }, [order]);
+  }, []);
 
   const columns = [
     { dataField: "_id", text: "ID", hidden: true },

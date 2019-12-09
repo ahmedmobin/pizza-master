@@ -12,52 +12,43 @@ const HomePage = () => {
   const [order, setOrder] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  useEffect(
-    () => {
-      const abortController = new AbortController();
-      const source = axios.CancelToken.source();
+  useEffect(() => {
+    const abortController = new AbortController();
+    const source = axios.CancelToken.source();
 
-      const loadData = async () => {
-        try {
-          const menuResponse = await axios.get("/menu/", {
-            cancelToken: source.token
-          });
-          const crustResponse = await axios.get("/crusts/", {
-            cancelToken: source.token
-          });
-          const toppingResponse = await axios.get("/topping/", {
-            cancelToken: source.token
-          });
-          const sizeResponse = await axios.get("/size/", {
-            cancelToken: source.token
-          });
+    const loadData = async () => {
+      try {
+        const menuResponse = await axios.get("/menu/", {
+          cancelToken: source.token
+        });
+        const crustResponse = await axios.get("/crusts/", {
+          cancelToken: source.token
+        });
+        const toppingResponse = await axios.get("/topping/", {
+          cancelToken: source.token
+        });
+        const sizeResponse = await axios.get("/size/", {
+          cancelToken: source.token
+        });
 
-          setMenu(menuResponse.data);
-          setCrusts(crustResponse.data);
-          setToppings(toppingResponse.data);
-          setSizes(sizeResponse.data);
-        } catch (error) {
-          if (axios.isCancel(error)) {
-            console.log("cancelled");
-          } else {
-            throw error;
-          }
+        setMenu(menuResponse.data);
+        setCrusts(crustResponse.data);
+        setToppings(toppingResponse.data);
+        setSizes(sizeResponse.data);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log("cancelled");
+        } else {
+          throw error;
         }
-      };
-      loadData();
-      return () => {
-        abortController.abort();
-        source.cancel();
-      };
-    },
-    [menu],
-    [crusts],
-    [toppings],
-    [sizes],
-    [order],
-    [modalShow],
-    [selectedItem]
-  );
+      }
+    };
+    loadData();
+    return () => {
+      abortController.abort();
+      source.cancel();
+    };
+  }, []);
   function addOrderItem(e) {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -280,5 +271,4 @@ const HomePage = () => {
     </div>
   );
 };
-
 export default HomePage;
