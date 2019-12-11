@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import http from "../../services/httpService";
-import { store as notifications } from "react-notifications-component";
+import notification from "./../Common/notifications";
 import OrderPizzaModal from "../OrderPizzaModal";
 
 const HomePage = () => {
@@ -64,27 +64,11 @@ const HomePage = () => {
       orderItem[key].push(value);
     });
     if (!orderItem.size) {
-      notifications.addNotification({
-        message: "Please select Size",
-        type: "danger",
-        insert: "top",
-        container: "top-center",
-        dismiss: {
-          duration: 5000
-        }
-      });
+      notification("Please select Size", "danger");
       return;
     }
     if (!orderItem.crust) {
-      notifications.addNotification({
-        message: "Please select crust",
-        type: "danger",
-        insert: "top",
-        container: "top-center",
-        dismiss: {
-          duration: 5000
-        }
-      });
+      notification("Please select crust", "danger");
       return;
     }
     if (!orderItem.toppings) {
@@ -125,27 +109,11 @@ const HomePage = () => {
       http
         .post("/orders/add", { order: order })
         .then(res => {
-          notifications.addNotification({
-            message: "Order Placed",
-            type: "success",
-            insert: "top",
-            container: "bottom-right",
-            dismiss: {
-              duration: 2000
-            }
-          });
+          notification("Order Placed", "success");
           setOrder([]);
         })
         .catch(err => {
-          notifications.addNotification({
-            message: err,
-            type: "danger",
-            insert: "top",
-            container: "bottom-right",
-            dismiss: {
-              duration: 2000
-            }
-          });
+          notification(err, "danger");
         });
     }
   }
@@ -155,15 +123,7 @@ const HomePage = () => {
   }
   function removeOrderItem(itemIndex) {
     let newOder = order.splice(itemIndex, 1);
-    notifications.addNotification({
-      message: "Item removed from order",
-      type: "danger",
-      insert: "top",
-      container: "bottom-right",
-      dismiss: {
-        duration: 2000
-      }
-    });
+    notification("Item removed from order", "danger");
     setOrder(newOder);
     setOrder(order);
   }

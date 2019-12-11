@@ -15,12 +15,12 @@ function LoginPage(props) {
     e.preventDefault();
     if ((userName === "admin", password === "admin")) {
       setAuthTokens({
-        admin: "THis is the admin"
+        admin: "This is the admin"
       });
       setLoggedIn(true);
     } else if ((userName === "user", password === "user")) {
       setAuthTokens({
-        user: "THis is the user"
+        user: "This is the user"
       });
       setLoggedIn(true);
     } else {
